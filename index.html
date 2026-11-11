@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#482318">
+<title>Dulce Tentación | Carta Digital</title>
+
+<style>
+:root {
+  --brown: #482318;
+  --brown2: #75402a;
+  --cream: #fff8ed;
+  --gold: #f3c64e;
+  --green: #168b50;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: #38231b;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  padding: 30px 15px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(135deg, #35170f, #75402a);
+}
+
+header h1 {
+  margin: 0;
+  color: #ffd65a;
+  font-family: Georgia, serif;
+  font-size: clamp(36px, 8vw, 55px);
+}
+
+header p {
+  margin-bottom: 0;
+}
+
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px 14px 40px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.intro h2 {
+  color: var(--brown);
+}
+
+.intro p {
+  color: #785e50;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #ead7c8;
+  border-radius: 17px;
+  overflow: hidden;
+  box-shadow: 0 5px 17px #48231815;
+}
+
+.photo {
+  height: 175px;
+  background: #f2dfd0;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.info {
+  padding: 14px;
+}
+
+.info h3 {
+  margin: 0 0 12px;
+  color: var(--brown);
+  font-size: 18px;
+}
+
+.price-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.price {
+  font-size: 17px;
+  font-weight: bold;
+  color: #87502d;
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: #f5e5d7;
+  color: #54291d;
+  font-size: 21px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.qty input {
+  width: 38px;
+  padding: 6px 2px;
+  border: 1px solid #e4cdbb;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.summary {
+  margin-top: 25px;
+  padding: 20px;
+  background: white;
+  border: 1px solid #ead7c8;
+  border-radius: 17px;
+  box-shadow: 0 5px 17px #48231815;
+}
+
+.summary h2 {
+  color: var(--brown);
+  margin-top: 0;
+}
+
+#items {
+  white-space: pre-line;
+  line-height: 1.7;
+  color: #60483c;
+}
+
+.total {
+  margin-top: 12px;
+  font-size: 27px;
+  font-weight: bold;
+  color: var(--brown);
+}
+
+.send {
+  display: block;
+  margin-top: 18px;
+  padding: 17px;
+  border-radius: 12px;
+  background: var(--green);
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.send:hover {
+  background: #107440;
+}
+
+.hint {
+  text-align: center;
+  color: #80695d;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+  background: #35170f;
+  color: #fff1dc;
+}
+
+footer strong {
+  color: #ffd65a;
+}
+
+@media(max-width:560px) {
+  header {
+    padding: 24px 12px;
+  }
+
+  main {
+    padding: 15px 10px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .photo {
+    height: 120px;
+  }
+
+  .info {
+    padding: 10px;
+  }
+
+  .info h3 {
+    font-size: 15px;
+    min-height: 36px;
+  }
+
+  .price-line {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .qty {
+    align-self: flex-end;
+  }
+
+  .summary {
+    padding: 14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Dulce Tentación</h1>
+  <p>🍰 Un dulce antojo para cada ocasión 🍰</p>
+</header>
+
+<main>
+
+<section class="intro">
+  <h2>Nuestra Carta de Postres</h2>
+  <p>Elige tus favoritos, selecciona las cantidades y haz tu pedido por WhatsApp.</p>
+</section>
+
+<section class="grid" id="products"></section>
+
+<section class="summary">
+  <h2>🛒 Tu pedido</h2>
+
+  <div id="items">
+    Todavía no has seleccionado productos.
+  </div>
+
+  <div class="total" id="total">
+    Total: S/ 0.00
+  </div>
+
+  <a class="send" id="send"
+     href="https://wa.me/51901201892"
+     target="_blank">
+    🟢 ENVIAR PEDIDO POR WHATSAPP
+  </a>
+
+  <p class="hint">
+    WhatsApp: 901 201 892<br>
+    Confirma disponibilidad y coordina la entrega directamente.
+  </p>
+</section>
+
+</main>
+
+<footer>
+  <strong>DULCE TENTACIÓN</strong><br>
+  ¡Endulzamos tus momentos!
+</footer>
+
+<script>
+
+// NÚMERO DE WHATSAPP
+const phone = "51901201892";
+
+// LISTA DE POSTRES Y FOTOGRAFÍAS
+const products = [
+  {
+    name: "Torta de Galleta",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85"
+  },
+  {
+    name: "Torta Chocomenta",
+    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=85"
+  },
+  {
+    name: "Torta Chocomaní",
+    image: "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?auto=format&fit=crop&w=900&q=85"
+  },
+  {
+    name: "Torta Helada",
+    image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=85"
+  },
+  {
+    name: "Torta Oreo",
+    image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=900&q=85"
+  },
+  {
+    name: "Torta Selva Negra",
+    image: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=900&q=85"
+  },
+  {
+    name: "Torta Tres Leches",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85"
+  }
+];
+
+// PRECIO ÚNICO POR PORCIÓN
+const price = 4;
+
+// CANTIDADES SELECCIONADAS
+const quantities = products.map(() => 0);
+
+const grid = document.getElementById("products");
+
+const money = value => "S/ " + value.toFixed(2);
+
+// CREAR TARJETAS DE PRODUCTOS
+products.forEach((product, index) => {
+
+  const card = document.createElement("article");
+  card.className = "card";
+
+  card.innerHTML = `
+    <div class="photo">
+      <img src="${product.image}"
+           alt="${product.name}"
+           loading="lazy">
+    </div>
+
+    <div class="info">
+      <h3>${product.name}</h3>
+
+      <div class="price-line">
+        <span class="price">Porción: S/ 4.00</span>
+
+        <div class="qty">
+          <button type="button" class="minus">−</button>
+
+          <input type="number"
+                 min="0"
+                 max="99"
+                 value="0"
+                 aria-label="Cantidad de ${product.name}">
+
+          <button type="button" class="plus">+</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const input = card.querySelector("input");
+  const minus = card.querySelector(".minus");
+  const plus = card.querySelector(".plus");
+
+  input.addEventListener("input", () => {
+    quantities[index] = Math.max(
+      0,
+      Math.min(99, parseInt(input.value, 10) || 0)
+    );
+
+    input.value = quantities[index];
+    updateOrder();
+  });
+
+  minus.addEventListener("click", () => {
+    quantities[index] = Math.max(0, quantities[index] - 1);
+    input.value = quantities[index];
+    updateOrder();
+  });
+
+  plus.addEventListener("click", () => {
+    quantities[index] = Math.min(99, quantities[index] + 1);
+    input.value = quantities[index];
+    updateOrder();
+  });
+
+  grid.appendChild(card);
+});
+
+// ACTUALIZAR PEDIDO Y TOTAL
+function updateOrder() {
+
+  let total = 0;
+  const lines = [];
+
+  products.forEach((product, index) => {
+
+    const quantity = quantities[index];
+
+    if (quantity > 0) {
+
+      const subtotal = quantity * price;
+      total += subtotal;
+
+      lines.push(
+        `• ${product.name}: ${quantity} porción(es) x S/ 4.00 = ${money(subtotal)}`
+      );
+    }
+  });
+
+  document.getElementById("items").textContent =
+    lines.length
+      ? lines.join("\n")
+      : "Todavía no has seleccionado productos.";
+
+  document.getElementById("total").textContent =
+    "Total: " + money(total);
+
+  let message;
+
+  if (lines.length > 0) {
+
+    message =
+      "Hola, quiero realizar este pedido de Dulce Tentación:\n\n" +
+      lines.join("\n") +
+      "\n\nTOTAL: " + money(total) +
+      "\n\nPor favor, confirmen disponibilidad y coordinen la entrega.";
+
+  } else {
+
+    message =
+      "Hola, quisiera información sobre los postres de Dulce Tentación.";
+  }
+
+  document.getElementById("send").href =
+    "https://wa.me/" + phone + "?text=" +
+    encodeURIComponent(message);
+}
+
+updateOrder();
+
+</script>
+
+</body>
+</html>
