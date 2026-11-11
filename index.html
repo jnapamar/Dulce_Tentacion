@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,11 +14,10 @@
   --cream: #fff8ed;
   --gold: #f3c64e;
   --green: #168b50;
+  --red: #c0392b;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -40,9 +40,7 @@ header h1 {
   font-size: clamp(36px, 8vw, 55px);
 }
 
-header p {
-  margin-bottom: 0;
-}
+header p { margin-bottom: 0; }
 
 main {
   max-width: 1000px;
@@ -55,13 +53,8 @@ main {
   margin-bottom: 22px;
 }
 
-.intro h2 {
-  color: var(--brown);
-}
-
-.intro p {
-  color: #785e50;
-}
+.intro h2 { color: var(--brown); }
+.intro p { color: #785e50; }
 
 .grid {
   display: grid;
@@ -89,9 +82,7 @@ main {
   display: block;
 }
 
-.info {
-  padding: 14px;
-}
+.info { padding: 14px; }
 
 .info h3 {
   margin: 0 0 12px;
@@ -107,7 +98,7 @@ main {
 }
 
 .price {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
   color: #87502d;
 }
@@ -131,7 +122,7 @@ main {
 }
 
 .qty input {
-  width: 38px;
+  width: 40px;
   padding: 6px 2px;
   border: 1px solid #e4cdbb;
   border-radius: 8px;
@@ -139,6 +130,8 @@ main {
   font-weight: bold;
   font-size: 15px;
 }
+
+/* CARRITO */
 
 .summary {
   margin-top: 25px;
@@ -149,22 +142,126 @@ main {
   box-shadow: 0 5px 17px #48231815;
 }
 
-.summary h2 {
-  color: var(--brown);
-  margin-top: 0;
+.summary h2 { color: var(--brown); }
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 13px 0;
+  border-bottom: 1px solid #f0e3d8;
 }
 
-#items {
-  white-space: pre-line;
-  line-height: 1.7;
-  color: #60483c;
+.cart-name {
+  flex: 1;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.cart-detail {
+  color: #80695d;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-actions button {
+  border: none;
+  border-radius: 7px;
+  padding: 7px 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cart-actions .small {
+  background: #f5e5d7;
+  color: var(--brown);
+}
+
+.cart-actions .delete {
+  background: #fde8e6;
+  color: var(--red);
+}
+
+.subtotal {
+  min-width: 75px;
+  text-align: right;
+  font-weight: bold;
+  color: var(--brown);
+}
+
+.empty {
+  padding: 20px 5px;
+  color: #80695d;
+  text-align: center;
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.clear {
+  background: #f5e5d7;
+  border: none;
+  color: var(--brown);
+  border-radius: 8px;
+  padding: 9px 12px;
+  cursor: pointer;
 }
 
 .total {
-  margin-top: 12px;
-  font-size: 27px;
+  font-size: 25px;
   font-weight: bold;
   color: var(--brown);
+  text-align: right;
+}
+
+/* DATOS DEL CLIENTE */
+
+.customer {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #ead7c8;
+}
+
+.customer h3 {
+  color: var(--brown);
+}
+
+.field { margin-bottom: 15px; }
+
+.field label {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e4cdbb;
+  border-radius: 9px;
+  font-size: 15px;
+  background: white;
+  font-family: Arial, sans-serif;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 65px;
 }
 
 .send {
@@ -178,10 +275,16 @@ main {
   text-decoration: none;
   font-size: 17px;
   font-weight: bold;
+  border: none;
+  width: 100%;
+  cursor: pointer;
 }
 
-.send:hover {
-  background: #107440;
+.send:hover { background: #107440; }
+
+.send:disabled {
+  background: #aaa;
+  cursor: not-allowed;
 }
 
 .hint {
@@ -198,31 +301,19 @@ footer {
   color: #fff1dc;
 }
 
-footer strong {
-  color: #ffd65a;
-}
+footer strong { color: #ffd65a; }
 
 @media(max-width:560px) {
-  header {
-    padding: 24px 12px;
-  }
-
-  main {
-    padding: 15px 10px;
-  }
+  header { padding: 24px 12px; }
+  main { padding: 15px 10px; }
 
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
   }
 
-  .photo {
-    height: 120px;
-  }
-
-  .info {
-    padding: 10px;
-  }
+  .photo { height: 120px; }
+  .info { padding: 10px; }
 
   .info h3 {
     font-size: 15px;
@@ -234,13 +325,11 @@ footer strong {
     align-items: flex-start;
   }
 
-  .qty {
-    align-self: flex-end;
-  }
+  .qty { align-self: flex-end; }
+  .summary { padding: 14px; }
 
-  .summary {
-    padding: 14px;
-  }
+  .cart-item { flex-wrap: wrap; }
+  .cart-actions { order: 2; }
 }
 </style>
 </head>
@@ -262,26 +351,72 @@ footer strong {
 <section class="grid" id="products"></section>
 
 <section class="summary">
-  <h2>🛒 Tu pedido</h2>
+
+  <h2>🛒 Tu carrito de compras</h2>
 
   <div id="items">
-    Todavía no has seleccionado productos.
+    <div class="empty">Todavía no has seleccionado productos.</div>
   </div>
 
-  <div class="total" id="total">
-    Total: S/ 0.00
+  <div class="cart-footer">
+    <button class="clear" type="button" id="clearCart">
+      🗑️ Vaciar carrito
+    </button>
+    <div class="total" id="total">S/ 0.00</div>
   </div>
 
-  <a class="send" id="send"
-     href="https://wa.me/51922068227"
-     target="_blank">
+  <div class="customer">
+    <h3>👤 Datos para tu pedido</h3>
+
+    <div class="field">
+      <label for="customerName">Tu nombre *</label>
+      <input type="text" id="customerName"
+             placeholder="Escribe tu nombre"
+             maxlength="60">
+    </div>
+
+    <div class="field">
+      <label for="delivery">Modalidad de entrega *</label>
+      <select id="delivery">
+        <option value="">Seleccionar modalidad</option>
+        <option value="Recojo en tienda">Recojo en tienda</option>
+        <option value="Delivery">Delivery</option>
+      </select>
+    </div>
+
+    <div class="field" id="addressField" hidden>
+      <label for="address">Dirección de entrega *</label>
+      <textarea id="address"
+                placeholder="Escribe tu dirección y referencia"
+                maxlength="250"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="payment">Forma de pago</label>
+      <select id="payment">
+        <option value="Por coordinar">Por coordinar</option>
+        <option value="Yape / Plin">Yape / Plin</option>
+        <option value="Efectivo">Efectivo</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="notes">Observaciones (opcional)</label>
+      <textarea id="notes"
+                placeholder="Alguna indicación adicional..."
+                maxlength="250"></textarea>
+    </div>
+  </div>
+
+  <button class="send" id="send" type="button" disabled>
     🟢 ENVIAR PEDIDO POR WHATSAPP
-  </a>
+  </button>
 
   <p class="hint">
     WhatsApp: 922 068 227<br>
-    Confirma disponibilidad y coordina la entrega directamente.
+    ¡Gracias por elegir Dulce Tentación! ❤️
   </p>
+
 </section>
 
 </main>
@@ -293,10 +428,10 @@ footer strong {
 
 <script>
 
-// NÚMERO DE WHATSAPP
+// WHATSAPP DE VENTAS
 const phone = "51922068227";
 
-// LISTA DE POSTRES Y FOTOGRAFÍAS
+// PRODUCTOS
 const products = [
   {
     name: "Torta de Galleta",
@@ -328,17 +463,20 @@ const products = [
   }
 ];
 
-// PRECIO ÚNICO POR PORCIÓN
+// PRECIO POR PORCIÓN
 const price = 4;
 
-// CANTIDADES SELECCIONADAS
+// CANTIDADES
 const quantities = products.map(() => 0);
 
 const grid = document.getElementById("products");
+const items = document.getElementById("items");
+const totalElement = document.getElementById("total");
+const sendButton = document.getElementById("send");
 
 const money = value => "S/ " + value.toFixed(2);
 
-// CREAR TARJETAS DE PRODUCTOS
+// CREAR PRODUCTOS
 products.forEach((product, index) => {
 
   const card = document.createElement("article");
@@ -355,15 +493,12 @@ products.forEach((product, index) => {
       <h3>${product.name}</h3>
 
       <div class="price-line">
-        <span class="price">Porción: S/ 4.00</span>
+        <span class="price">Porción: ${money(price)}</span>
 
         <div class="qty">
           <button type="button" class="minus">−</button>
 
-          <input type="number"
-                 min="0"
-                 max="99"
-                 value="0"
+          <input type="number" min="0" max="99" value="0"
                  aria-label="Cantidad de ${product.name}">
 
           <button type="button" class="plus">+</button>
@@ -373,39 +508,71 @@ products.forEach((product, index) => {
   `;
 
   const input = card.querySelector("input");
-  const minus = card.querySelector(".minus");
-  const plus = card.querySelector(".plus");
 
-  input.addEventListener("input", () => {
-    quantities[index] = Math.max(
-      0,
-      Math.min(99, parseInt(input.value, 10) || 0)
-    );
-
-    input.value = quantities[index];
-    updateOrder();
+  card.querySelector(".minus").addEventListener("click", () => {
+    changeQuantity(index, quantities[index] - 1);
   });
 
-  minus.addEventListener("click", () => {
-    quantities[index] = Math.max(0, quantities[index] - 1);
-    input.value = quantities[index];
-    updateOrder();
+  card.querySelector(".plus").addEventListener("click", () => {
+    changeQuantity(index, quantities[index] + 1);
   });
 
-  plus.addEventListener("click", () => {
-    quantities[index] = Math.min(99, quantities[index] + 1);
-    input.value = quantities[index];
-    updateOrder();
+  input.addEventListener("change", () => {
+    changeQuantity(index, Number(input.value));
   });
 
   grid.appendChild(card);
 });
 
-// ACTUALIZAR PEDIDO Y TOTAL
+// MODIFICAR CANTIDAD
+function changeQuantity(index, quantity) {
+
+  quantities[index] = Math.max(
+    0,
+    Math.min(99, Math.floor(Number(quantity) || 0))
+  );
+
+  const inputs = grid.querySelectorAll("input");
+  inputs[index].value = quantities[index];
+
+  updateOrder();
+}
+
+// ELIMINAR PRODUCTO
+function removeProduct(index) {
+  changeQuantity(index, 0);
+}
+
+// VACIAR CARRITO
+document.getElementById("clearCart").addEventListener("click", () => {
+  quantities.fill(0);
+
+  grid.querySelectorAll("input").forEach(input => {
+    input.value = 0;
+  });
+
+  updateOrder();
+});
+
+// MODALIDAD DE ENTREGA
+const delivery = document.getElementById("delivery");
+
+delivery.addEventListener("change", () => {
+  const isDelivery = delivery.value === "Delivery";
+
+  document.getElementById("addressField").hidden = !isDelivery;
+
+  updateOrder();
+});
+
+// VALIDAR Y ACTUALIZAR CARRITO
 function updateOrder() {
 
   let total = 0;
-  const lines = [];
+  let count = 0;
+  const selected = [];
+
+  items.innerHTML = "";
 
   products.forEach((product, index) => {
 
@@ -414,43 +581,175 @@ function updateOrder() {
     if (quantity > 0) {
 
       const subtotal = quantity * price;
-      total += subtotal;
 
-      lines.push(
-        `• ${product.name}: ${quantity} porción(es) x S/ 4.00 = ${money(subtotal)}`
-      );
+      total += subtotal;
+      count += quantity;
+
+      selected.push({
+        name: product.name,
+        quantity,
+        subtotal
+      });
+
+      const row = document.createElement("div");
+      row.className = "cart-item";
+
+      const name = document.createElement("div");
+      name.className = "cart-name";
+
+      const title = document.createElement("div");
+      title.textContent = product.name;
+
+      const detail = document.createElement("div");
+      detail.className = "cart-detail";
+      detail.textContent =
+        `${quantity} porción(es) × ${money(price)}`;
+
+      name.append(title, detail);
+
+      const actions = document.createElement("div");
+      actions.className = "cart-actions";
+
+      const minus = document.createElement("button");
+      minus.className = "small";
+      minus.textContent = "−";
+      minus.setAttribute("aria-label", "Restar una porción");
+      minus.addEventListener("click", () => {
+        changeQuantity(index, quantity - 1);
+      });
+
+      const plus = document.createElement("button");
+      plus.className = "small";
+      plus.textContent = "+";
+      plus.setAttribute("aria-label", "Agregar una porción");
+      plus.addEventListener("click", () => {
+        changeQuantity(index, quantity + 1);
+      });
+
+      const remove = document.createElement("button");
+      remove.className = "delete";
+      remove.textContent = "🗑️ Eliminar";
+      remove.addEventListener("click", () => {
+        removeProduct(index);
+      });
+
+      actions.append(minus, plus, remove);
+
+      const subtotalElement = document.createElement("div");
+      subtotalElement.className = "subtotal";
+      subtotalElement.textContent = money(subtotal);
+
+      row.append(name, actions, subtotalElement);
+      items.appendChild(row);
     }
   });
 
-  document.getElementById("items").textContent =
-    lines.length
-      ? lines.join("\n")
-      : "Todavía no has seleccionado productos.";
-
-  document.getElementById("total").textContent =
-    "Total: " + money(total);
-
-  let message;
-
-  if (lines.length > 0) {
-
-    message =
-      "Hola, quiero realizar este pedido de Dulce Tentación:\n\n" +
-      lines.join("\n") +
-      "\n\nTOTAL: " + money(total) +
-      "\n\nPor favor, confirmen disponibilidad y coordinen la entrega.";
-
-  } else {
-
-    message =
-      "Hola, quisiera información sobre los postres de Dulce Tentación.";
+  if (count === 0) {
+    items.innerHTML =
+      '<div class="empty">🛒 Tu carrito está vacío.<br>¡Elige tus postres favoritos!</div>';
   }
 
-  document.getElementById("send").href =
-    "https://wa.me/" + phone + "?text=" +
-    encodeURIComponent(message);
+  totalElement.textContent = "Total: " + money(total);
+
+  sendButton.disabled = count === 0;
+
+  return { selected, total, count };
 }
 
+// ENVIAR PEDIDO ESTRUCTURADO A WHATSAPP
+sendButton.addEventListener("click", () => {
+
+  const order = updateOrder();
+
+  if (order.count === 0) {
+    alert("Selecciona al menos un producto.");
+    return;
+  }
+
+  const customerName =
+    document.getElementById("customerName").value.trim();
+
+  const deliveryType = delivery.value;
+
+  const address =
+    document.getElementById("address").value.trim();
+
+  const payment =
+    document.getElementById("payment").value;
+
+  const notes =
+    document.getElementById("notes").value.trim();
+
+  if (!customerName) {
+    alert("Por favor, escribe tu nombre.");
+    document.getElementById("customerName").focus();
+    return;
+  }
+
+  if (!deliveryType) {
+    alert("Selecciona la modalidad de entrega.");
+    delivery.focus();
+    return;
+  }
+
+  if (deliveryType === "Delivery" && !address) {
+    alert("Escribe la dirección de entrega.");
+    document.getElementById("address").focus();
+    return;
+  }
+
+  const now = new Date();
+
+  const date = now.toLocaleString("es-PE", {
+    timeZone: "America/Lima",
+    dateStyle: "short",
+    timeStyle: "short"
+  });
+
+  const lines = order.selected.map((item, index) =>
+    `${index + 1}. ${item.name}\n` +
+    `   Cantidad: ${item.quantity} porción(es)\n` +
+    `   Precio unitario: ${money(price)}\n` +
+    `   Subtotal: ${money(item.subtotal)}`
+  );
+
+  const message = [
+    "🍰 *NUEVO PEDIDO - DULCE TENTACIÓN*",
+    "━━━━━━━━━━━━━━━━━━",
+    "",
+    "📅 Fecha: " + date,
+    "👤 Cliente: " + customerName,
+    "",
+    "🛒 *DETALLE DEL PEDIDO*",
+    "",
+    ...lines,
+    "",
+    "━━━━━━━━━━━━━━━━━━",
+    "📦 Total de porciones: " + order.count,
+    "💰 *TOTAL: " + money(order.total) + "*",
+    "",
+    "🚚 *DATOS DE ENTREGA*",
+    "Modalidad: " + deliveryType,
+    ...(deliveryType === "Delivery"
+      ? ["Dirección: " + address]
+      : []),
+    "",
+    "💳 Forma de pago: " + payment,
+    ...(notes ? ["📝 Observaciones: " + notes] : []),
+    "",
+    "━━━━━━━━━━━━━━━━━━",
+    "¡Gracias por tu preferencia! ❤️",
+    "Por favor, confirmar disponibilidad y pedido."
+  ].join("\n");
+
+  const whatsappURL =
+    "https://wa.me/" + phone +
+    "?text=" + encodeURIComponent(message);
+
+  window.open(whatsappURL, "_blank");
+});
+
+// ESTADO INICIAL
 updateOrder();
 
 </script>
